@@ -1,97 +1,73 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import countriesData from './data/countries';
 import { WorldMap } from './components/WorldMap';
+import './styles/App.css'; // Custom CSS for Apple-inspired styling.
 
 function App() {
-  const [visited, setVisited] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [includeInCount, setIncludeInCount] = useState(true);
+  const [visited, setVisited] = useState([]); // List of visited countries
+  const [view, setView] = useState('select'); // View: 'select' or 'map'
+  const [searchQuery, setSearchQuery] = useState(''); // Search query
 
-  // OPTIONAL: if you want a text search filter, you can add state for that:
-  // const [searchValue, setSearchValue] = useState('');
+  // Filter countries based on the search query
+  const filteredCountries = countriesData.filter((country) =>
+    country.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  // Handle dropdown selection
-  const handleSelect = (e) => {
-    const code = e.target.value;
-    const found = countriesData.find((c) => c.code === code);
-    setSelectedCountry(found || null);
-    setIncludeInCount(true); // Reset checkbox each time a new country is selected
+  // Toggle a country's "visited" state
+  const toggleVisited = (countryCode) => {
+    setVisited((prev) => {
+      const isVisited = prev.some((c) => c.code === countryCode);
+
+      if (isVisited) {
+        return prev.filter((c) => c.code !== countryCode);
+      } else {
+        const country = countriesData.find((c) => c.code === countryCode);
+        return [...prev, { ...country, included: true }];
+      }
+    });
   };
 
-  // Save the visit
-  const handleSaveVisit = () => {
-    if (!selectedCountry) return;
-
-    // Check if already visited
-    const alreadyVisited = visited.some((v) => v.code === selectedCountry.code);
-
-    if (!alreadyVisited) {
-      setVisited((prev) => [
-        ...prev,
-        {
-          ...selectedCountry,
-          included: includeInCount,
-        },
-      ]);
-    } else {
-      // If already in visited, update the included status
-      setVisited((prev) =>
-        prev.map((v) =>
-          v.code === selectedCountry.code
-            ? { ...v, included: includeInCount }
-            : v
-        )
-      );
-    }
-  };
+  const handleSave = () => setView('map');
+  const handleBackToSelect = () => setView('select');
 
   return (
-    <div style={{ textAlign: 'center', margin: '20px' }}>
-      <h1>WIBI - Where I've Been Inclusive</h1>
-
-      <div style={{ marginBottom: '20px' }}>
-        {/* Simple dropdown */}
-        <select onChange={handleSelect} value={selectedCountry?.code || ''}>
-          <option value="">-- Select a country --</option>
-          {countriesData.map((country) => (
-            <option key={country.code} value={country.code}>
-              {country.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {selectedCountry && (
-        <div style={{ marginBottom: '20px' }}>
-          <label htmlFor="includeInCount" style={{ marginRight: '8px' }}>
-            <input
-              id="includeInCount"
-              type="checkbox"
-              checked={includeInCount}
-              onChange={() => setIncludeInCount((prev) => !prev)}
-            />
-            Include in country count?
-          </label>
-          <button type="button" onClick={handleSaveVisit}>
-            Save visit
+    <div className="app-container">
+      {view === 'select' ? (
+        <div className="select-view">
+          <h1>Select Countries You've Visited</h1>
+          <input
+            type="text"
+            placeholder="Search countries..."
+            className="search-bar"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <div className="countries-list">
+            {filteredCountries.map((country) => (
+              <div
+                key={country.code}
+                className={`country-item ${
+                  visited.some((c) => c.code === country.code) ? 'selected' : ''
+                }`}
+                onClick={() => toggleVisited(country.code)}
+              >
+                <span className="flag">{country.flag}</span>
+                <span className="name">{country.name}</span>
+              </div>
+            ))}
+          </div>
+          <button className="save-button" onClick={handleSave}>
+            Save and View Map
           </button>
         </div>
+      ) : (
+        <div className="map-view">
+          <button className="back-button" onClick={handleBackToSelect}>
+            ⏎ Back to Selection
+          </button>
+          <WorldMap visited={visited} />
+        </div>
       )}
-
-      {/* Display the WorldMap, highlighting visited countries */}
-      <WorldMap visited={visited} />
-
-      {/* Optional: Show a list of visited countries */}
-      <h2>Visited Countries</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {visited.map((v) => (
-          <li key={v.code}>
-            {v.name} | Included: {v.included ? 'Yes' : 'No'}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

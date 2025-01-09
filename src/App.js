@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import countriesData from './data/countries';
-import { WorldMap } from './components/WorldMap';
+import WorldMap from './components/WorldMap';
 import './styles/App.css'; // Custom CSS for Apple-inspired styling.
 
 function App() {

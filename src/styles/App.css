@@ -10,8 +10,16 @@
 h1 {
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Adjusted for better spacing */
   color: #333;
+}
+
+/* Total Count */
+p {
+  font-size: 18px; /* Slightly larger for visibility */
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #555; /* Subtle contrast */
 }
 
 /* Search Bar */
@@ -84,18 +92,4 @@ h1 {
 
 .save-button:hover {
   background-color: #005bb5;
-}
-
-.map-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

@@ -470,16 +470,6 @@ const countries = [
     flag: '🇰🇮',
   },
   {
-    name: 'Korea, North',
-    code: 'KP',
-    flag: '🇰🇵',
-  },
-  {
-    name: 'Korea, South',
-    code: 'KR',
-    flag: '🇰🇷',
-  },
-  {
     name: 'Kosovo',
     code: 'XK',
     flag: '🇽🇰',
@@ -675,6 +665,11 @@ const countries = [
     flag: '🇳🇬',
   },
   {
+    name: 'North Korea',
+    code: 'KP',
+    flag: '🇰🇵',
+  },
+  {
     name: 'Northern Ireland',
     code: 'NIR',
     flag: '🇬🇧',
@@ -848,6 +843,11 @@ const countries = [
   name: 'South Africa',
   code: 'ZA',
   flag: '🇿🇦',
+},
+{
+  name: 'South Korea',
+  code: 'KR',
+  flag: '🇰🇷',
 },
 {
   name: 'South Sudan',

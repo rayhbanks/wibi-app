@@ -30,6 +30,11 @@ const countries = [
     flag: '🇦🇬',
   },
   {
+    name: 'Antarctica',
+    code: 'AQ',
+    flag: '🏔️',
+  },
+  {
     name: 'Argentina',
     code: 'AR',
     flag: '🇦🇷',
@@ -265,6 +270,11 @@ const countries = [
     flag: '🇸🇻',
   },
   {
+    name: 'England',
+    code: 'ENG',
+    flag: '🇬🇧',
+  },
+  {
     name: 'Equatorial Guinea',
     code: 'GQ',
     flag: '🇬🇶',
@@ -305,6 +315,11 @@ const countries = [
     flag: '🇫🇷',
   },
   {
+    name: 'French Polynesia',
+    code: 'PF',
+    flag: '🇵🇫',
+  },
+  {
     name: 'Gabon',
     code: 'GA',
     flag: '🇬🇦',
@@ -333,6 +348,11 @@ const countries = [
     name: 'Greece',
     code: 'GR',
     flag: '🇬🇷',
+  },
+  {
+    name: 'Greenland',
+    code: 'GL',
+    flag: '🇬🇱',
   },
   {
     name: 'Grenada',
@@ -655,6 +675,11 @@ const countries = [
     flag: '🇳🇬',
   },
   {
+    name: 'Northern Ireland',
+    code: 'NIR',
+    flag: '🇬🇧',
+  },
+  {
     name: 'Norway',
     code: 'NO',
     flag: '🇳🇴',
@@ -733,6 +758,11 @@ const countries = [
     name: 'Rwanda',
     code: 'RW',
     flag: '🇷🇼',
+  },
+  {
+    name: 'Scotland',
+    code: 'SCO',
+    flag: '🇬🇧',
   },
   {
     name: 'St Kitts and Nevis',
@@ -973,6 +1003,11 @@ const countries = [
   name: 'Vietnam',
   code: 'VN',
   flag: '🇻🇳',
+},
+{
+  name: 'Wales',
+  code: 'WLS',
+  flag: '🇬🇧',
 },
 {
   name: 'Western Sahara',

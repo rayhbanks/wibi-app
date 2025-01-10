@@ -1,36 +1,48 @@
 /* General App Container */
 .app-container {
-  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Elza', sans-serif; /* Match portfolio font */
   margin: 20px auto;
-  max-width: 600px;
+  max-width: 800px; /* Wider container for better layout */
+  border-radius: 15px; /* Rounded corners */
+  padding: 30px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   text-align: center;
+  background: #f8f6f3; /* White container background */
+}
+
+/* Outer Background Wrapper */
+body {
+  background-color: #ffffff; /* White background outside container */
+  margin: 0;
+  padding: 20px;
 }
 
 /* View Headers */
 h1 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 10px; /* Adjusted for better spacing */
-  color: #333;
+  font-family: 'Recoleta', serif; /* Serif font for headings */
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000; /* Black for clean contrast */
+  margin-bottom: 20px;
 }
 
 /* Total Count */
 p {
-  font-size: 18px; /* Slightly larger for visibility */
-  font-weight: 500;
-  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif; /* Body font */
+  font-size: 1.2rem;
   color: #555; /* Subtle contrast */
+  margin-bottom: 20px;
 }
 
 /* Search Bar */
 .search-bar {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 /* Countries List */
@@ -40,7 +52,7 @@ p {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  background: #f9f9f9;
+  background: #ffffff; /* White content box */
 }
 
 /* Country Item */
@@ -48,10 +60,10 @@ p {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 8px 10px;
+  padding: 10px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.3s ease;
 }
 
 .country-item:last-child {
@@ -59,37 +71,111 @@ p {
 }
 
 .country-item:hover {
-  background: #e8f0fe;
+  background: #e8f0fe; /* Subtle hover effect */
 }
 
 .country-item.selected {
   background: #d1e7fd;
-  font-weight: 600;
+  font-weight: bold;
 }
 
+/* Flags and Names */
 .flag {
-  font-size: 20px;
-  margin-right: 10px;
+  font-size: 1.5rem;
+  margin-right: 12px;
 }
 
 .name {
-  font-size: 16px;
+  font-size: 1rem;
+}
+
+/* Results Section */
+.results {
+  margin-top: 30px;
+  text-align: left; /* Left-align for better readability */
+}
+
+.results h2 {
+  font-family: 'Recoleta', serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000; /* Black for headings */
+  margin-bottom: 10px;
+}
+
+.results ul {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  padding-left: 20px;
+}
+
+.results p {
+  font-family: 'Inter', sans-serif;
+  color: #555;
+}
+
+/* Auth Section */
+.app-footer {
+  margin-bottom: 20px;
+}
+
+.app-footer input {
+  font-family: 'Inter', sans-serif;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: calc(100% - 30px); /* Adjust for consistent spacing */
+  max-width: 300px;
+}
+
+.app-footer button {
+  background: #000000; /* Black button */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Elza', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin: 5px;
+}
+
+.app-footer button:hover {
+  background: #333333; /* Slightly lighter black */
+  transform: scale(1.05);
 }
 
 /* Save Button */
 .save-button {
-  background-color: #007aff;
-  color: #fff;
+  background: #000000; /* Black button */
+  color: #ffffff;
   padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 8px;
   margin-top: 20px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-family: 'Elza', sans-serif;
 }
 
 .save-button:hover {
-  background-color: #005bb5;
+  background: #333333;
+  transform: scale(1.05);
+}
+
+.toggle-link {
+  color: #ffd966; /* Yellow color that matches portfolio */
+  cursor: pointer; /* Add pointer cursor to indicate clickability */
+  text-decoration: underline; /* Add underline for clarity */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.toggle-link:hover {
+  color: #fbe090; /* Slightly lighter yellow on hover */
 }

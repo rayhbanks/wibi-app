@@ -16,6 +16,7 @@ function App() {
   const [email, setEmail] = useState(""); // Email for login/signup
   const [password, setPassword] = useState(""); // Password for login/signup
   const [isSignUp, setIsSignUp] = useState(false); // Toggle between login and sign-up
+  const [authError, setAuthError] = useState(""); // Error message state
 
   // Monitor authentication state
   useEffect(() => {
@@ -79,8 +80,20 @@ function App() {
       }
       setEmail("");
       setPassword("");
+      setAuthError(""); // Clear error on success
     } catch (error) {
-      console.error("Authentication error:", error.message);
+      // Map Firebase error codes to user-friendly messages
+      if (error.code === "auth/wrong-password") {
+        setAuthError("Incorrect password. Please try again.");
+      } else if (error.code === "auth/user-not-found") {
+        setAuthError("No user found with this email.");
+      } else if (error.code === "auth/email-already-in-use") {
+        setAuthError("Email is already in use. Please login instead.");
+      } else if (error.code === "auth/invalid-email") {
+        setAuthError("Invalid email format.");
+      } else {
+        setAuthError("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
@@ -95,35 +108,6 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
-        {user ? (
-          <div>
-            <span>Welcome, {user.email}!</span>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
-        ) : (
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleAuth}>
-              {isSignUp ? "Sign Up" : "Login"}
-            </button>
-            <button onClick={() => setIsSignUp((prev) => !prev)}>
-              {isSignUp ? "Switch to Login" : "Switch to Sign Up"}
-            </button>
-          </div>
-        )}
-      </header>
       <h1>Countries Visited</h1>
       <p>Total: {visited.length}</p> {/* Display total count at the top */}
       <input
@@ -164,6 +148,47 @@ function App() {
           </ul>
         )}
       </div>
+
+      <footer className="app-footer">
+  {user ? (
+    <div>
+      <span>Welcome, {user.email}!</span>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  ) : (
+    <div>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      {authError && <p className="error-message">{authError}</p>} {/* Display error messages */}
+      <br />
+      <button onClick={handleAuth}>
+        {isSignUp ? "Sign Up" : "Login"}
+      </button>
+      <p>
+        {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+        <span
+          className="toggle-link"
+          onClick={() => {
+            setIsSignUp((prev) => !prev);
+            setAuthError(""); // Clear error on toggle
+          }}
+        >
+          {isSignUp ? "Login" : "Sign Up"}
+        </span>
+      </p>
+    </div>
+  )}
+</footer>
     </div>
   );
 }
